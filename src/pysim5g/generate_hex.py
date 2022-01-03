@@ -12,7 +12,7 @@ import math
 import fiona
 from shapely.ops import transform
 from shapely.geometry import Point, mapping, shape, Polygon
-from functools import partial
+#from functools import partial
 from rtree import index
 import pyproj
 
@@ -38,11 +38,14 @@ def convert_point_to_projected_crs(point, original_crs, new_crs):
         Geojson point in desired Coordinate Reference System.
 
     """
-    project = partial(
-        pyproj.transform,
-        pyproj.Proj(original_crs),
-        pyproj.Proj(new_crs)
-        )
+    p1 = pyproj.CRS(original_crs)
+    p2 = pyproj.CRS(new_crs)
+    project = pyproj.Transformer.from_crs(p1, p2, always_xy=True).transform
+    #project = partial(
+    #    pyproj.transform,
+    #    pyproj.Proj(original_crs),
+    #    pyproj.Proj(new_crs)
+    #    )
 
     new_geom = transform(project, Point(point))
 
