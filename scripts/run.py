@@ -907,7 +907,7 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
 
                 print('--working on {}: {}'.format(environment, site_radius))
 
-                transmitter, interfering_transmitters, site_area, int_site_areas = \
+                transmitter, interfering_transmitters, site_area, interfering_site_areas = \
                     produce_sites_and_site_areas(
                         unprojected_point['geometry']['coordinates'],
                         site_radius,
@@ -1013,7 +1013,7 @@ if __name__ == '__main__':
         'iterations': 20,
         'seed_value1': 1,
         'seed_value2': 2,
-        'indoor_users_percentage': 50,
+        'indoor_users_percentage': 80,
         'los_breakpoint_m': 500,
         'tx_macro_baseline_height': 30,
         'tx_macro_power': 40,
