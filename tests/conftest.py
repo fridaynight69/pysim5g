@@ -305,7 +305,7 @@ def setup_parameters():
         'iterations': 5,
         'seed_value1': 1,
         'seed_value2': 2,
-        'indoor_users_percentage': 50,
+        'indoor_users_percentage': 80,
         'los_breakpoint_m': 250,
         'tx_macro_baseline_height': 30,
         'tx_macro_power': 40,

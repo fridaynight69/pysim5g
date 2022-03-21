@@ -956,55 +956,55 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
                         'capacity_lut_by_frequency.csv', parameters
                     )
 
-                    # if frequency == spectrum_portfolio[0][0]:
+                    if frequency == spectrum_portfolio[0][0]:
 
-                    #     percentile_site_results = calculate_costs(
-                    #         percentile_site_results, costs, parameters,
-                    #         site_radius, environment
-                    #     )
+                        percentile_site_results = calculate_costs(
+                            percentile_site_results, costs, parameters,
+                            site_radius, environment
+                        )
 
-                    #     write_cost_lookup_table(percentile_site_results, results_directory,
-                    #         'percentile_{}_capacity_lut.csv'.format(
-                    #         parameters['percentile'])
-                    #     )
+                        write_cost_lookup_table(percentile_site_results, results_directory,
+                            'percentile_{}_capacity_lut.csv'.format(
+                            parameters['percentile'])
+                        )
 
-    #                     # geojson_receivers = convert_results_geojson(results)
+    #               # geojson_receivers = convert_results_geojson(results)
 
-    #                     # write_shapefile(
-    #                     #     geojson_receivers, os.path.join(results_directory, 'shapes'),
-    #                     #     'receivers_{}.shp'.format(site_radius),
-    #                     #     projected_crs
-    #                     #     )
+    #               # write_shapefile(
+    #               #     geojson_receivers, os.path.join(results_directory, 'shapes'),
+    #               #     'receivers_{}.shp'.format(site_radius),
+    #               #     projected_crs
+    #               #     )
 
-    #                     # write_shapefile(
-    #                     #     transmitter, os.path.join(results_directory, 'shapes'),
-    #                     #     'transmitter_{}.shp'.format(site_radius),
-    #                     #     projected_crs
-    #                     # )
+    #               # write_shapefile(
+    #               #     transmitter, os.path.join(results_directory, 'shapes'),
+    #               #     'transmitter_{}.shp'.format(site_radius),
+    #               #     projected_crs
+    #               # )
 
-    #                     # write_shapefile(
-    #                     #     site_area, os.path.join(results_directory, 'shapes'),
-    #                     #     'site_area_{}.shp'.format(site_radius),
-    #                     #     projected_crs
-    #                     # )
+    #               # write_shapefile(
+    #               #     site_area, os.path.join(results_directory, 'shapes'),
+    #               #     'site_area_{}.shp'.format(site_radius),
+    #               #     projected_crs
+    #               # )
 
-    #                     # write_shapefile(
-    #                     #     interfering_transmitters, os.path.join(results_directory, 'shapes'),
-    #                     #     'interfering_transmitters_{}.shp'.format(site_radius),
-    #                     #     projected_crs
-    #                     # )
+    #               # write_shapefile(
+    #               #     interfering_transmitters, os.path.join(results_directory, 'shapes'),
+    #               #     'interfering_transmitters_{}.shp'.format(site_radius),
+    #               #     projected_crs
+    #               # )
 
-    #                     # write_shapefile(
-    #                     #     interfering_site_areas, os.path.join(results_directory, 'shapes'),
-    #                     #     'interfering_site_areas_{}.shp'.format(site_radius),
-    #                     #     projected_crs
-    #                     # )
+    #               # write_shapefile(
+    #               #     interfering_site_areas, os.path.join(results_directory, 'shapes'),
+    #               #     'interfering_site_areas_{}.shp'.format(site_radius),
+    #               #     projected_crs
+    #               # )
 
-    # # write_export_strategy_costs(os.path.join(results_directory,
-    # #     'percentile_{}_capacity_lut.csv'.format(PARAMETERS['percentile'])),
-    # #     results_directory,
-    # #     'aggregate_strategy_costs.csv'.format(PARAMETERS['percentile'])
-    # # )
+    # write_export_strategy_costs(os.path.join(results_directory,
+    #     'percentile_{}_capacity_lut.csv'.format(PARAMETERS['percentile'])),
+    #     results_directory,
+    #     'aggregate_strategy_costs.csv'.format(PARAMETERS['percentile'])
+    # )
 
 
 if __name__ == '__main__':
@@ -1064,17 +1064,17 @@ if __name__ == '__main__':
     # ]
 
     SPECTRUM_PORTFOLIO = [
-        (0.7, 1, '4G', '1x1'),
-        (0.8, 1, '4G', '1x1'),
+#        (0.7, 1, '4G', '1x1'),
+#        (0.8, 1, '4G', '1x1'),
         (1.8, 1, '4G', '1x1'),
         (2.1, 1, '4G', '1x1'),
-        (2.3, 1, '4G', '1x1'),
-        (2.5, 1, '4G', '1x1'),
+#        (2.3, 1, '4G', '1x1'),
+#        (2.5, 1, '4G', '1x1'),
         (2.6, 1, '4G', '1x1'),
-        (0.7, 1, '5G', '1x1'),
-        (3.5, 1, '5G', '1x1'),
-        (3.7, 1, '5G', '1x1'),
-        (26.0, 1, '5G', '1x1'),
+        (0.7, 1, '5G', '8x8'),
+        (3.5, 1, '5G', '8x8'),
+        (3.7, 1, '5G', '8x8'),
+        (30.0, 1, '5G', '8x8'),
     ]
 
     ANT_TYPE = [
@@ -1130,7 +1130,7 @@ if __name__ == '__main__':
             yield n
 
     INCREMENT_MA = (400, 30400, 1000) #(5000, 5500, 500)
-    INCREMENT_MI = (40, 540, 80)
+    INCREMENT_MI = (40, 540, 80) #(300, 400, 100)
 
     SITE_RADII = {
         'macro': {
