@@ -879,10 +879,10 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
         'type': 'Feature',
         'geometry': {
             'type': 'Point',
-            'coordinates': (-0.07496, 51.42411),
+            'coordinates': (106.663966,10.771259),
             },
         'properties': {
-            'site_id': 'Crystal Palace Radio Tower'
+            'site_id': 'HCMUT Tower'
             }
         }
 
@@ -956,49 +956,49 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
                         'capacity_lut_by_frequency.csv', parameters
                     )
 
-                    if frequency == spectrum_portfolio[0][0]:
+#                    if frequency == spectrum_portfolio[0][0]:
+#
+#                        percentile_site_results = calculate_costs(
+#                            percentile_site_results, costs, parameters,
+#                            site_radius, environment
+#                        )
 
-                        percentile_site_results = calculate_costs(
-                            percentile_site_results, costs, parameters,
-                            site_radius, environment
+#                        write_cost_lookup_table(percentile_site_results, results_directory,
+#                            'percentile_{}_capacity_lut.csv'.format(
+#                            parameters['percentile'])
+#                        )
+
+                    geojson_receivers = convert_results_geojson(results)
+
+                    write_shapefile(
+                        geojson_receivers, os.path.join(results_directory, 'shapes'),
+                        'receivers_{}.shp'.format(site_radius),
+                        projected_crs
                         )
 
-                        write_cost_lookup_table(percentile_site_results, results_directory,
-                            'percentile_{}_capacity_lut.csv'.format(
-                            parameters['percentile'])
-                        )
+                    write_shapefile(
+                        transmitter, os.path.join(results_directory, 'shapes'),
+                        'transmitter_{}.shp'.format(site_radius),
+                        projected_crs
+                    )
 
-    #               # geojson_receivers = convert_results_geojson(results)
+                    write_shapefile(
+                        site_area, os.path.join(results_directory, 'shapes'),
+                        'site_area_{}.shp'.format(site_radius),
+                        projected_crs
+                    )
 
-    #               # write_shapefile(
-    #               #     geojson_receivers, os.path.join(results_directory, 'shapes'),
-    #               #     'receivers_{}.shp'.format(site_radius),
-    #               #     projected_crs
-    #               #     )
+                    write_shapefile(
+                        interfering_transmitters, os.path.join(results_directory, 'shapes'),
+                        'interfering_transmitters_{}.shp'.format(site_radius),
+                        projected_crs
+                    )
 
-    #               # write_shapefile(
-    #               #     transmitter, os.path.join(results_directory, 'shapes'),
-    #               #     'transmitter_{}.shp'.format(site_radius),
-    #               #     projected_crs
-    #               # )
-
-    #               # write_shapefile(
-    #               #     site_area, os.path.join(results_directory, 'shapes'),
-    #               #     'site_area_{}.shp'.format(site_radius),
-    #               #     projected_crs
-    #               # )
-
-    #               # write_shapefile(
-    #               #     interfering_transmitters, os.path.join(results_directory, 'shapes'),
-    #               #     'interfering_transmitters_{}.shp'.format(site_radius),
-    #               #     projected_crs
-    #               # )
-
-    #               # write_shapefile(
-    #               #     interfering_site_areas, os.path.join(results_directory, 'shapes'),
-    #               #     'interfering_site_areas_{}.shp'.format(site_radius),
-    #               #     projected_crs
-    #               # )
+                    write_shapefile(
+                        interfering_site_areas, os.path.join(results_directory, 'shapes'),
+                        'interfering_site_areas_{}.shp'.format(site_radius),
+                        projected_crs
+                    )
 
     # write_export_strategy_costs(os.path.join(results_directory,
     #     'percentile_{}_capacity_lut.csv'.format(PARAMETERS['percentile'])),
@@ -1054,27 +1054,19 @@ if __name__ == '__main__':
         'router': 2000,
     }
 
-    # SPECTRUM_PORTFOLIO = [
-    #     (0.7, 1, '5G', '8x8'),
-    #     (0.8, 1, '4G', '1x1'),
-    #     (2.6, 1, '4G', '1x1'),
-    #     (3.5, 1, '5G', '8x8'),
-    #     (3.7, 1, '5G', '8x8'),
-    #     (26, 1, '5G', '8x8'),
-    # ]
-
+# 4G: Band7: UL (2500 MHz ~ 2570 MHz)
+#            DL (2620 MHz ~ 2690 MHz)
+#     Bandwidth: 5, 10, 15, 20 (MHz)
+# 5G: Band n78 (3.3 GHz ~ 3.8 GHz)
+#     Total BW: 500 MHz
     SPECTRUM_PORTFOLIO = [
-#        (0.7, 1, '4G', '1x1'),
-#        (0.8, 1, '4G', '1x1'),
-        (1.8, 1, '4G', '1x1'),
-        (2.1, 1, '4G', '1x1'),
-#        (2.3, 1, '4G', '1x1'),
-#        (2.5, 1, '4G', '1x1'),
-        (2.6, 1, '4G', '1x1'),
-        (0.7, 1, '5G', '8x8'),
-        (3.5, 1, '5G', '8x8'),
-        (3.7, 1, '5G', '8x8'),
-        (30.0, 1, '5G', '8x8'),
+        (2.62, 20, '4G', '1x1'),
+        (2.65, 20, '4G', '1x1'),
+        (2.69, 20, '4G', '1x1'),
+        (3.3, 20, '5G', '8x8'),
+        (3.5, 20, '5G', '8x8'),
+        (3.8, 20, '5G', '8x8'),
+        (26, 20, '5G', '8x8'),
     ]
 
     ANT_TYPE = [
