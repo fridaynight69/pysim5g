@@ -1,8 +1,8 @@
 """
 System simulator for 4G/5G
 
-Author: Edward Oughton
-Date: May 2019
+Reference from "pysim5g", written by Edward Oughton
+GitHub: https://github.com/edwardoughton/pysim5g.git
 
 """
 from rtree import index

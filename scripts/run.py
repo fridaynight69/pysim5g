@@ -1,8 +1,8 @@
 """
 Runner for system_simulator.py
 
-Written by Edward Oughton
-May 2019
+Reference from "pysim5g", written by Edward Oughton
+GitHub: https://github.com/edwardoughton/pysim5g.git
 
 """
 import os
@@ -21,7 +21,6 @@ from collections import OrderedDict
 
 from pysim5g.generate_hex import produce_sites_and_site_areas
 from pysim5g.system_simulator import SimulationManager
-from pysim5g.costs import calculate_costs
 
 np.random.seed(42)
 
@@ -98,7 +97,7 @@ def generate_receivers(site_area, parameters, grid):
                             "losses": parameters['rx_losses'],
                             "ue_height": float(parameters['rx_height']),
                             "indoor": (True if float(indoor_outdoor_probability) < \
-                                float(0.5) else False),
+                                float(0.8) else False),
                         }
                     })
                     id_number += 1
@@ -869,7 +868,7 @@ def write_shapefile(data, directory, filename, crs):
 
 
 def run_simulator(parameters, spectrum_portfolio, ant_types,
-    site_radii, modulation_and_coding_lut, costs, confidence_intervals):
+    site_radii, modulation_and_coding_lut, confidence_intervals):
     """
 
     Function to run the simulator and all associated modules.
@@ -1033,26 +1032,12 @@ if __name__ == '__main__':
         'network_load': 50,
         'percentile': 50,
         'sectorization': 3,
-        'mnos': 2,
-        'asset_lifetime': 10,
-        'discount_rate': 3.5,
-        'opex_percentage_of_capex': 10,
+#        'mnos': 2,
+#        'asset_lifetime': 10,
+#        'discount_rate': 3.5,
+#        'opex_percentage_of_capex': 10,
     }
 
-    COSTS = {
-        #all costs in $USD
-        'single_sector_antenna': 1500,
-        'single_remote_radio_unit': 4000,
-        'single_baseband_unit': 10000,
-        'tower': 10000,
-        'civil_materials': 5000,
-        'transportation': 10000,
-        'installation': 5000,
-        'site_rental': 9600,
-        'power_generator_battery_system': 5000,
-        'high_speed_backhaul_hub': 15000,
-        'router': 2000,
-    }
 
 # 4G: Band7: UL (2500 MHz ~ 2570 MHz)
 #            DL (2620 MHz ~ 2690 MHz)
@@ -1149,6 +1134,5 @@ if __name__ == '__main__':
         ANT_TYPE,
         SITE_RADII,
         MODULATION_AND_CODING_LUT,
-        COSTS,
         CONFIDENCE_INTERVALS
         )

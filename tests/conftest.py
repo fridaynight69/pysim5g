@@ -265,13 +265,14 @@ def setup_receivers():
 @fixture(scope='function')
 def setup_modulation_coding_lut():
     return [
-        #CQI Index	Modulation	Coding rate	Spectral efficiency (bps/Hz) SINR estimate (dB)
-        ('4G', '1x1', 1, 'QPSK',	0.0762,	0.1523, -6.7),
-        ('4G', '1x1', 2, 'QPSK',	0.1172,	0.2344, -4.7),
-        ('4G', '1x1', 3, 'QPSK',	0.1885,	0.377, -2.3),
-        ('4G', '1x1', 4, 'QPSK',	0.3008,	0.6016, 0.2),
-        ('4G', '1x1', 5, 'QPSK',	0.4385,	0.877, 2.4),
-        ('4G', '1x1', 6, 'QPSK',	0.5879,	1.1758,	4.3),
+        #Generation, MIMO, CQI Index, Modulation, Coding rate, 
+        #Spectral Efficiency (bps/Hz), SINR-estimate (dB)
+        ('4G', '1x1', 1, 'QPSK', 0.0762, 0.1523, -6.7),
+        ('4G', '1x1', 2, 'QPSK', 0.1172, 0.2344, -4.7),
+        ('4G', '1x1', 3, 'QPSK', 0.1885, 0.377, -2.3),
+        ('4G', '1x1', 4, 'QPSK', 0.3008, 0.6016, 0.2),
+        ('4G', '1x1', 5, 'QPSK', 0.4385, 0.877, 2.4),
+        ('4G', '1x1', 6, 'QPSK', 0.5879, 1.1758, 4.3),
         ('4G', '1x1', 7, '16QAM', 0.3691, 1.4766, 5.9),
         ('4G', '1x1', 8, '16QAM', 0.4785, 1.9141, 8.1),
         ('4G', '1x1', 9, '16QAM', 0.6016, 2.4063, 10.3),
@@ -325,13 +326,12 @@ def setup_parameters():
         'network_load': 50,
         'percentile': 10,
         'sectorization': 3,
-        #'overbooking_factor': 50,
-        'mnos': 2,
-        'asset_lifetime': 10,
-        'discount_rate': 3.5,
-        'opex_percentage_of_capex': 10,
+#        'overbooking_factor': 50,
+#        'mnos': 2,
+#        'asset_lifetime': 10,
+#        'discount_rate': 3.5,
+#        'opex_percentage_of_capex': 10,
     }
-
 
 
 @pytest.fixture
@@ -353,7 +353,7 @@ def setup_unprojected_point():
         'type': 'Feature',
         'geometry': {
             'type': 'Point',
-            'coordinates': (106.673073,10.770379),
+            'coordinates': (106.663966,10.771259),
             },
         'properties': {
             'site_id': 'HCMUT Tower'
@@ -394,22 +394,22 @@ def setup_data():
     }
 
 
-@pytest.fixture
-def setup_costs():
-    return {
-        #all costs in $USD
-        'single_sector_antenna': 1500,
-        'single_remote_radio_unit': 4000,
-        'single_baseband_unit': 10000,
-        'tower': 10000,
-        'civil_materials': 5000,
-        'transportation': 10000,
-        'installation': 5000,
-        'site_rental': 9600,
-        'power_generator_battery_system': 5000,
-        'high_speed_backhaul_hub': 15000,
-        'router': 2000,
-    }
+#@pytest.fixture
+#def setup_costs():
+#    return {
+#        all costs in $USD
+#        'single_sector_antenna': 1500,
+#        'single_remote_radio_unit': 4000,
+#        'single_baseband_unit': 10000,
+#        'tower': 10000,
+#        'civil_materials': 5000,
+#        'transportation': 10000,
+#        'installation': 5000,
+#        'site_rental': 9600,
+#        'power_generator_battery_system': 5000,
+#        'high_speed_backhaul_hub': 15000,
+#        'router': 2000,
+#    }
 
 
 @pytest.fixture

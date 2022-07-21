@@ -1,8 +1,8 @@
 """
 Path loss calculator
 
-Author: Edward Oughton
-Date: April 2019
+Reference from "pysim5g", written by Edward Oughton
+GitHub: https://github.com/edwardoughton/pysim5g.git
 
 An implementation of a path loss calculator utilising ETSI TR 138 901 (0.5 - 100 GHz).
 
@@ -71,7 +71,7 @@ def path_loss_calculator(frequency, distance, ant_height, ant_type,
     else:
 
         raise ValueError (
-            "frequency of {} is NOT within correct range".format(frequency)
+            "frequency of {} is NOT within correct range (0.5 to 100 GHz)".format(frequency)
         )
 
     return round(path_loss), model
