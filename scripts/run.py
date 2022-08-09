@@ -878,7 +878,7 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
         'type': 'Feature',
         'geometry': {
             'type': 'Point',
-            'coordinates': (106.663966,10.771259),
+            'coordinates': (106.6621249,10.7725817),
             },
         'properties': {
             'site_id': 'HCMUT Tower'
@@ -890,8 +890,8 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
 
     environments =[
         'urban',
-        'suburban',
-        'rural'
+#        'suburban',
+#        'rural'
     ]
 
     for environment in environments:
@@ -1030,28 +1030,25 @@ if __name__ == '__main__':
         'street_width': 20,
         'above_roof': 0,
         'network_load': 50,
-        'percentile': 50,
+#        'percentile': 50,      #Replaced by confidence_intervals [5, 50, 95] (%)
         'sectorization': 3,
-#        'mnos': 2,
-#        'asset_lifetime': 10,
-#        'discount_rate': 3.5,
-#        'opex_percentage_of_capex': 10,
     }
 
 
-# 4G: Band7: UL (2500 MHz ~ 2570 MHz)
-#            DL (2620 MHz ~ 2690 MHz)
-#     Bandwidth: 5, 10, 15, 20 (MHz)
-# 5G: Band n78 (3.3 GHz ~ 3.8 GHz)
+# 4G: Band 7: UL (2500 MHz - 2570 MHz)
+#             DL (2620 MHz - 2690 MHz)
+#     Bandwidth (MHz): 5, 10, 15, 20
+# 5G (Rel 15): Band n78 (3.3 GHz - 3.8 GHz) - the most popular freq. band used in 5G
 #     Total BW: 500 MHz
+#     Channel BW (MHz): 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 MHz
     SPECTRUM_PORTFOLIO = [
-        (2.62, 20, '4G', '1x1'),
-        (2.65, 20, '4G', '1x1'),
-        (2.69, 20, '4G', '1x1'),
-        (3.3, 20, '5G', '8x8'),
-        (3.5, 20, '5G', '8x8'),
-        (3.8, 20, '5G', '8x8'),
-        (26, 20, '5G', '8x8'),
+        (2.63, 10, '4G', '1x1'),
+        (2.65, 10, '4G', '1x1'),
+        (2.68, 10, '4G', '1x1'),
+        (3.3, 40, '5G', '8x8'),
+        (3.5, 40, '5G', '8x8'),
+        (3.7, 40, '5G', '8x8'),
+#        (26, 100, '5G', '8x8'),
     ]
 
     ANT_TYPE = [
@@ -1062,8 +1059,8 @@ if __name__ == '__main__':
     MODULATION_AND_CODING_LUT =[
         # ETSI. 2018. ‘5G; NR; Physical Layer Procedures for Data
         # (3GPP TS 38.214 Version 15.3.0 Release 15)’. Valbonne, France: ETSI.
-        # Generation MIMO CQI Index	Modulation	Coding rate
-        # Spectral efficiency (bps/Hz) SINR estimate (dB)
+        # Generation, MIMO, CQI Index,	Modulation,	Coding rate,
+        # Spectral efficiency (bps/Hz), SINR estimate (dB)
         ('4G', '1x1', 1, 'QPSK', 78, 0.1523, -6.7),
         ('4G', '1x1', 2, 'QPSK', 120, 0.2344, -4.7),
         ('4G', '1x1', 3, 'QPSK', 193, 0.377, -2.3),
@@ -1077,7 +1074,7 @@ if __name__ == '__main__':
         ('4G', '1x1', 11, '64QAM', 567, 3.3223, 14.1),
         ('4G', '1x1', 12, '64QAM', 666, 3.9023, 16.3),
         ('4G', '1x1', 13, '64QAM', 772, 4.5234, 18.7),
-        ('4G', '1x1', 14, '64QAM', 973, 5.1152, 21),
+        ('4G', '1x1', 14, '64QAM', 873, 5.1152, 21),
         ('4G', '1x1', 15, '64QAM', 948, 5.5547, 22.7),
         ('5G', '8x8', 1, 'QPSK', 78, 0.30, -6.7),
         ('5G', '8x8', 2, 'QPSK', 193, 2.05, -4.7),
@@ -1106,8 +1103,10 @@ if __name__ == '__main__':
         for n in range(min, max, increment):
             yield n
 
-    INCREMENT_MA = (400, 30400, 1000) #(5000, 5500, 500)
-    INCREMENT_MI = (40, 540, 80) #(300, 400, 100)
+    #INCREMENT_MA = (400, 30400, 1000)
+    #INCREMENT_MI = (40, 540, 80)
+    INCREMENT_MA = (500, 30500, 500)
+    INCREMENT_MI = (40, 540, 50)
 
     SITE_RADII = {
         'macro': {
