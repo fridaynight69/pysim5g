@@ -248,7 +248,7 @@ class SimulationManager(object):
         Returns
         -------
         received_power : float
-            UE received power.
+            UE received power (dBm).
 
         """
         #calculate Equivalent Isotropically Radiated Power (EIRP)
@@ -286,14 +286,16 @@ class SimulationManager(object):
         environment : string
             Either urban, suburban or rural.
         seed_value : int
+            (simulation_parameters['seed_value'])
             Set seed value for quasi-random number generator.
         iterations : int
+            (simulation_parameters['iterations'])
             The number of stochastic iterations for the specific point.
 
         Returns
         -------
         interference : List
-            Received interference power in decibels at the receiver.
+            Received interference power in decibels (dBm) at the receiver.
         model : string
             Specifies which propagation model was used.
         ave_distance : float
