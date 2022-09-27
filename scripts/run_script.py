@@ -567,7 +567,7 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
         'type': 'Feature',
         'geometry': {
             'type': 'Point',
-            'coordinates': (106.6630555,10.7724298), # Coordinate of transmitter (from OpenStreetMap)
+            'coordinates': (106.6630555,10.7724298),
             },
         'properties': {
             'site_id': 'HCMUT Tower'
@@ -577,7 +577,6 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
     unprojected_crs = 'epsg:4326'
     projected_crs = 'epsg:3857'
 
-    # Propagation environments
     environments =[
         'urban',
 #        'suburban',
@@ -645,6 +644,7 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
                         'capacity_lut_by_frequency.csv', parameters
                     )
 
+
                     geojson_receivers = convert_results_geojson(results)
 
                     write_shapefile(
@@ -677,14 +677,11 @@ def run_simulator(parameters, spectrum_portfolio, ant_types,
                         projected_crs
                     )
 
-def generate_site_radii(min, max, increment):
-        for n in range(min, max, increment):
-            yield n
 
-#if __name__ == '__main__':
 
-# For configuring inputs of run_simulator
-PARAMETERS = {
+if __name__ == '__main__':
+
+    PARAMETERS = {
         'iterations': 1000,
         'seed_value1': 1,
         'seed_value2': 2,
@@ -706,17 +703,18 @@ PARAMETERS = {
         'street_width': 20,
         'above_roof': 0,
         'network_load': 50,
+#        'percentile': 50,      #Replaced by confidence_intervals [5, 50, 95] (%)
         'sectorization': 3,
     }
 
 
-    # 4G: Band 7: UL (2500 MHz - 2570 MHz)
-    #             DL (2620 MHz - 2690 MHz)
-    #     Bandwidth (MHz): 5, 10, 15, 20
-    # 5G (Rel 17): Band n78 (3.3 GHz - 3.8 GHz) - the most popular frequency band used in 5G
-    #     Total BW: 500 MHz
-    #     Channel BW (MHz): 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 MHz
-SPECTRUM_PORTFOLIO = [
+# 4G: Band 7: UL (2500 MHz - 2570 MHz)
+#             DL (2620 MHz - 2690 MHz)
+#     Bandwidth (MHz): 5, 10, 15, 20
+# 5G (Rel 17): Band n78 (3.3 GHz - 3.8 GHz) - the most popular frequency band used in 5G
+#     Total BW: 500 MHz
+#     Channel BW (MHz): 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 MHz
+    SPECTRUM_PORTFOLIO = [
 #        (2.63, 20, '4G', '1x1'),
         (2.65, 20, '4G', '1x1'),
 #        (2.68, 20, '4G', '1x1'),
@@ -725,12 +723,12 @@ SPECTRUM_PORTFOLIO = [
 #        (3.7, 40, '5G', '8x8'),
     ]
 
-ANT_TYPE = [
-    #    ('macro'),
+    ANT_TYPE = [
+#        ('macro'),
         ('micro'),
     ]
 
-MODULATION_AND_CODING_LUT =[
+    MODULATION_AND_CODING_LUT =[
         # 3GPP TS 38.214 Version 17.2.0; NR; Physical layer procedures for data (Release 17)
         # Generation, MIMO, CQI Index,	Modulation,	Coding rate,
         # Spectral efficiency (bps/Hz), SINR estimate (dB)
@@ -766,19 +764,22 @@ MODULATION_AND_CODING_LUT =[
         ('5G', '8x8', 15, '256QAM', 948, 50.00, 22.7),
     ]
 
-CONFIDENCE_INTERVALS = [
+    CONFIDENCE_INTERVALS = [
         5,
         50,
         95,
     ]
 
+    def generate_site_radii(min, max, increment):
+        for n in range(min, max, increment):
+            yield n
 
     #INCREMENT_MA = (400, 30400, 1000)
     #INCREMENT_MI = (40, 540, 80)
-INCREMENT_MA = (500, 30500, 500)
-INCREMENT_MI = (40, 540, 50)
+    INCREMENT_MA = (500, 30500, 500)
+    INCREMENT_MI = (40, 540, 50)
 
-SITE_RADII = {
+    SITE_RADII = {
         'macro': {
             'urban':
                 generate_site_radii(INCREMENT_MA[0],INCREMENT_MA[1],INCREMENT_MA[2]),
@@ -797,11 +798,11 @@ SITE_RADII = {
             },
         }
 
-#    run_simulator(
-#        PARAMETERS,
-#        SPECTRUM_PORTFOLIO,
-#        ANT_TYPE,
-#        SITE_RADII,
-#        MODULATION_AND_CODING_LUT,
-#        CONFIDENCE_INTERVALS
-#        )
+    run_simulator(
+        PARAMETERS,
+        SPECTRUM_PORTFOLIO,
+        ANT_TYPE,
+        SITE_RADII,
+        MODULATION_AND_CODING_LUT,
+        CONFIDENCE_INTERVALS
+        )

@@ -508,15 +508,20 @@ class SimulationManager(object):
                     spectral_efficiency = lower[5]
                     return spectral_efficiency
 
-                highest_value = modulation_and_coding_lut[-1]
+                highest_value_4G = modulation_and_coding_lut[14]
+                highest_value_5G = modulation_and_coding_lut[29]
 
-                if sinr >= highest_value[6]:
-                    spectral_efficiency = highest_value[5]
+                if (sinr >= highest_value_4G[6] and generation == '4G'):
+                   spectral_efficiency = highest_value_4G[5]
+                   return spectral_efficiency
+                
+                if (sinr >= highest_value_5G[6] and generation == '5G'):
+                    spectral_efficiency = highest_value_5G[5]
                     return spectral_efficiency
 
                 lowest_value = modulation_and_coding_lut[0]
 
-                if sinr < lowest_value[5]:
+                if sinr < lowest_value[6]:
                     spectral_efficiency = 0
                     return spectral_efficiency
 

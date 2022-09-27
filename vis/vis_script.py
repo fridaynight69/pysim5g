@@ -80,7 +80,9 @@ def plotting_function1_isd(data):
 #    long_data['ISD_binned'] = pd.cut(long_data['Inter-Site Distance (km)'], bins, labels=["1", "2", "3", "4", "5"])
 
     plot = sns.relplot(x='Inter-Site Distance (km)', y='Value', hue="Frequency (GHz)",
-        col="Metric", col_wrap=2, palette=sns.color_palette("husl", 6),
+        col="Metric", col_wrap=2,
+#        palette=sns.color_palette("husl", 6),
+        palette=sns.color_palette('bright', 2),
         kind="line", data=long_data,
         facet_kws=dict(sharex=False, sharey=False),
         legend="full")
@@ -95,7 +97,7 @@ def plotting_function1_isd(data):
     plot.axes[2].set_ylabel('Interference (dBm)')
     plot.axes[3].set_ylabel('SINR (dB)')
     plot.axes[4].set_ylabel('SE (Bps/Hz)')
-    plot.axes[5].set_ylabel('Capacity (Mbps km^2)')
+    plot.axes[5].set_ylabel('Capacity (Mbps/km^2)')
 
     plot.axes[0].set_xlabel('Inter-Site Distance (km)')
     plot.axes[1].set_xlabel('Inter-Site Distance (km)')
@@ -114,7 +116,7 @@ def plotting_function1_isd(data):
 
 def load_in_all_main_lut_specific(max_isd_distance):
 
-    filenames = glob.iglob(os.path.join(DATA, 'full_tables', 'full_capacity_lut_urban_290*'))
+    filenames = glob.iglob(os.path.join(DATA, 'full_tables', 'full_capacity_lut_urban_340*'))
 
     output = pd.concat((pd.read_csv(f) for f in filenames))
 
@@ -167,7 +169,8 @@ def plotting_function2_isd(data):
         col="Metric", col_wrap=2,
         kind="bar",
         data=long_data,
-        palette=sns.color_palette("husl", 6),
+#        palette=sns.color_palette("husl", 6),
+        palette=sns.color_palette('bright', 2),
         sharex=False,
         sharey=False,
         legend="full")
@@ -182,7 +185,7 @@ def plotting_function2_isd(data):
     plot.axes[2].set_ylabel('Interference (dBm)')
     plot.axes[3].set_ylabel('SINR (dB)')
     plot.axes[4].set_ylabel('SE (Bps/Hz)')
-    plot.axes[5].set_ylabel('Capacity (Mbps km^2)')
+    plot.axes[5].set_ylabel('Capacity (Mbps/km^2)')
 
     plot.axes[0].set_xlabel('Inter-Site Distance (km)')
     plot.axes[1].set_xlabel('Inter-Site Distance (km)')

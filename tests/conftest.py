@@ -353,7 +353,7 @@ def setup_unprojected_point():
         'type': 'Feature',
         'geometry': {
             'type': 'Point',
-            'coordinates': (106.6621249,10.7725817),
+            'coordinates': (106.6630555,10.7724298),
             },
         'properties': {
             'site_id': 'HCMUT Tower'

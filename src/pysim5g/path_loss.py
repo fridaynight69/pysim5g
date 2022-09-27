@@ -346,7 +346,7 @@ def generate_log_normal_dist_value(frequency, mu, sigma, draws, seed_value):
     Returns
     -------
     random_variation : float
-        Mean of the random variation over the specified itations.
+        Mean of the random variation over the specified iterations.
 
     """
     if seed_value == None:
@@ -368,7 +368,7 @@ def outdoor_to_indoor_path_loss(frequency, indoor, seed_value):
     """
 
     ITU-R M.1225 suggests building penetration loss for shadow fading can be modelled
-    as a log-normal distribution with a mean and  standard deviation of 12 dB and
+    as a log-normal distribution with a mean and standard deviation of 12 dB and
     8 dB respectively.
 
     frequency : int
