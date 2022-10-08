@@ -70,10 +70,10 @@ class READMEPage(tk.Frame):
 A Graphic User Interface is built on Tkinter (Python library)
 1. Firstly click button "5G RAN SIMULATOR" to run simulator file (run.py) in scripts
 2. Secondly click button "RESULT VISUALIZATION" to visualize all simulation results in graphs
-After click "RESULT VISUALIZATION", a window "Running visualization" will appear:
+After click "RESULT VISUALIZATION", a "RESULT VISUALIZATION" window will appear:
 	2.1. Click "Start Visualization" to start visualizing simulation results
-	2.2. Click "Show line graphs" to display the line graphs of simulation results
-	2.3. Click "Show bar graphs" to display the bar graphs of simulation results
+	2.2. Click "Show line graphs" to show the line graphs of simulation results
+	2.3. Click "Show bar graphs" to show the bar graphs of simulation results
 		'''
 		
 		tk.Label(self, text=self.textDescription, font=('MathJax_SansSerif-Bold',

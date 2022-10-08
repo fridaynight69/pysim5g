@@ -69,12 +69,12 @@ def generate_receivers(site_area, parameters, grid):
 
         x_axis = np.linspace(
             minx, maxx, num=(
-                int(math.sqrt(geom.area) / (math.sqrt(geom.area)/20))
+                int(math.sqrt(geom.area) / (math.sqrt(geom.area)/40))
                 )
             )
         y_axis = np.linspace(
             miny, maxy, num=(
-                int(math.sqrt(geom.area) / (math.sqrt(geom.area)/20))
+                int(math.sqrt(geom.area) / (math.sqrt(geom.area)/40))
                 )
             )
 
@@ -717,12 +717,20 @@ PARAMETERS = {
     #     Total BW: 500 MHz
     #     Channel BW (MHz): 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 MHz
 SPECTRUM_PORTFOLIO = [
-#        (2.63, 20, '4G', '1x1'),
+#        (2.62, 15, '4G', '1x1'),
+#        (2.63, 15, '4G', '1x1'),
+#        (2.64, 15, '4G', '1x1'),
         (2.65, 20, '4G', '1x1'),
-#        (2.68, 20, '4G', '1x1'),
+#        (2.66, 15, '4G', '1x1'),
+#        (2.67, 15, '4G', '1x1'),
+#        (2.68, 15, '4G', '1x1'),
+#        (2.69, 15, '4G', '1x1'),
         (3.3, 40, '5G', '8x8'),
-#        (3.5, 40, '5G', '8x8'),
-#        (3.7, 40, '5G', '8x8'),
+#        (3.4, 30, '5G', '8x8'),
+#        (3.5, 30, '5G', '8x8'),
+#        (3.6, 30, '5G', '8x8'),
+#        (3.7, 30, '5G', '8x8'),
+#        (3.8, 30, '5G', '8x8'),
     ]
 
 ANT_TYPE = [
